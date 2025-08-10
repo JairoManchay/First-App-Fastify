@@ -6,5 +6,7 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs}'],
     languageOptions: { globals: globals.browser },
-  },
+    
+  }
+  
 ]);

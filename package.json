@@ -7,13 +7,23 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "npx nodemon --legacy-watch --delay 1000ms server.js",
+    "test:CI" : "CI=true jest --coverage --runInBand --detectOpenHandles",
+    "test": "jest --forceExit --detectOpenHandles",
     "test:watch": "jest --watchAll",
-    "lint": "eslint **/*.js --fix --ignore-pattern node_modules/",
+    "lint:fix": "eslint **/*.js --fix --ignore-pattern node_modules/",
+    "lint": "eslint **/*.js --ignore-pattern node_modules/ migrations/",
     "format": "prettier --write **"
   },
   "dependencies": {
-    "fastify": "^5.4.0"
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/swagger-ui": "^5.2.3",
+    "db-migrate": "^0.11.14",
+    "db-migrate-pg": "^1.5.2",
+    "dotenv": "^17.2.1",
+    "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
+    "pg-promise": "^11.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
