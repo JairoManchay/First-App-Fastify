@@ -10,15 +10,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
-      - name: 📥 Checkout del código
-        uses: actions/checkout@v4
+      # 1. Descargar el código
+      - uses: actions/checkout@v2
 
+      # 2. Dar permisos de ejecución al archivo batect
+      - name: Dar permisos a batect
+        run: chmod +x batect
+
+      # 3. Instalar dependencias usando batect
       - name: Install Fastify dependencies
         run: ./batect install-dep
 
-
+      # 4. Ejecutar tests
       - name: Run testcase
         run: ./batect test-ci
-      
+
+      # 5. Linting
       - name: Perform Linting
         run: ./batect test-lint
