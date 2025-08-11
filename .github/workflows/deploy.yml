@@ -28,3 +28,20 @@ jobs:
       # 5. Linting
       - name: Perform Linting
         run: ./batect test-lint
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download Batect
+        run: |
+          curl -sSL https://github.com/batect/batect/releases/latest/download/batect -o batect
+          chmod +x batect
+
+      - name: Install dependencies
+        run: ./batect install-dep
+
+      - name: Run tests
+        run: ./batect test
